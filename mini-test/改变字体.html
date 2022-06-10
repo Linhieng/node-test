@@ -1,0 +1,21 @@
+<div id="a" style="--size: 40px; --color: aquamarine;">
+  <p>hello</p>
+  <p>hi</p>
+</div>
+<button>字体</button>
+<style>
+  p {
+    font-size: var(--size);
+    color: var(--color);
+    transition: font-size .3s;
+  }
+</style>
+
+<script>
+  const btn = document.querySelector('button')
+  btn.onclick = () => {
+    console.log(document.querySelector('#a').getAttribute('style'))
+    document.querySelector('#a').setAttribute('style', '--size:20px;')
+
+  }
+</script>

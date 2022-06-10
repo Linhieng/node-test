@@ -1,0 +1,136 @@
+$padding:.5em;
+$margin:.1em;
+
+body {
+  display:grid;
+  place-items:center;
+  height:100vh;
+  background:
+    url(https://i.koya.io/d8b4c12c-dfe8-47a5-a9fb-ecca8d60b511.png) repeat,
+    linear-gradient(170deg, #eaeaea, #d6d6d6);
+  #panel {
+    position:relative;
+    font-size:3rem;
+    display:grid;
+    grid-template-columns:repeat(4, 1em);
+    grid-template-rows:1em;
+    grid-gap:$padding;
+    padding:$padding;
+    border-radius:.25em;
+    background:white;
+    box-shadow:0 .25em 1em 0 #00000020, 0 .1em .2em 0 #00000020;
+    // transform:scale(1.5);
+    input {
+      position:relative;
+      appearance:none;
+      color:#E6E9ED;
+      cursor:pointer;
+      &:before, &:after {
+        content:'';
+        position:absolute;
+        top:0em;
+        left:0em;
+        right:0em;
+        height:.25em;
+        background:currentcolor;
+        border-radius:1em;
+        transition:.25s;
+      }
+      &:before {
+        box-shadow:0 .75em 0 0 currentcolor; 
+      }
+      &:after {
+        top:50%;
+        transform:translatey(-50%);
+      }
+      &:hover {
+        color:#D6D8DB;
+      }
+      &.left {
+        &:after {
+          right:$margin*2;
+        }
+      }
+      &.center {
+        &:after {
+          left:$margin;
+          right:$margin;
+        }
+      }
+      &.right {
+        &:after {
+          left:$margin*2;
+        }
+      }
+    }
+    .floater {
+      pointer-events:none;
+      position:absolute;
+      top:$padding;
+      left:$padding;
+      right:$padding;
+      bottom:$padding;
+      color:#5D9CEC;
+      >span {
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        left:0em;
+        height:.25em;
+        transition:.25s;
+        width:1em;
+        &:nth-child(1) {
+          top:0;
+        }
+        &:nth-child(2) {
+          top:50%;
+          transform:translatey(-50%);
+          &, span {
+            transition-delay:.1s;
+          }
+        }
+        &:nth-child(3) {
+          bottom:0;
+          &, span {
+            transition-delay:.2s;
+          }
+        }
+        span {
+          height:100%;
+          border-radius:1em;
+          background:currentcolor;
+        }
+      }
+    }
+    input.left:checked~.floater {
+      >span {
+        left:0em;
+        &:nth-child(2) span {
+          margin-right:$margin*2;
+        }
+      }
+    }
+    input.center:checked~.floater {
+      >span {
+        left:1.5em;
+        &:nth-child(2) span {
+          margin-left:$margin;
+          margin-right:$margin;
+        }
+      }
+    }
+    input.right:checked~.floater {
+      >span {
+        left:3em;
+        &:nth-child(2) span {
+          margin-left:$margin*2;
+        }
+      }
+    }
+    input.justify:checked~.floater {
+      >span {
+        left:4.5em;
+      }
+    }
+  }
+}

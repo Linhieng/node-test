@@ -1,0 +1,50 @@
+body { display: grid; place-items: center; height: 100vh; background: url(https://i.koya.io/d8b4c12c-dfe8-47a5-a9fb-ecca8d60b511.png) repeat, linear-gradient(170deg, #eaeaea, #d6d6d6); }
+
+body #panel { position: relative; font-size: 3rem; display: grid; grid-template-columns: repeat(4, 1em); grid-template-rows: 1em; grid-gap: 0.5em; padding: 0.5em; border-radius: .25em; background: white; box-shadow: 0 .25em 1em 0 #00000020, 0 .1em .2em 0 #00000020; }
+
+body #panel input { position: relative; appearance: none; color: #E6E9ED; cursor: pointer; }
+
+body #panel input:before, body #panel input:after { content: ''; position: absolute; top: 0em; left: 0em; right: 0em; height: .25em; background: currentcolor; border-radius: 1em; transition: .25s; }
+
+body #panel input:before { box-shadow: 0 .75em 0 0 currentcolor; }
+
+body #panel input:after { top: 50%; transform: translatey(-50%); }
+
+body #panel input:hover { color: #D6D8DB; }
+
+body #panel input.left:after { right: 0.2em; }
+
+body #panel input.center:after { left: 0.1em; right: 0.1em; }
+
+body #panel input.right:after { left: 0.2em; }
+
+body #panel .floater { pointer-events: none; position: absolute; top: 0.5em; left: 0.5em; right: 0.5em; bottom: 0.5em; color: #5D9CEC; }
+
+body #panel .floater > span { display: flex; flex-direction: column; position: absolute; left: 0em; height: .25em; transition: .25s; width: 1em; }
+
+body #panel .floater > span:nth-child(1) { top: 0; }
+
+body #panel .floater > span:nth-child(2) { top: 50%; transform: translatey(-50%); }
+
+body #panel .floater > span:nth-child(2), body #panel .floater > span:nth-child(2) span { transition-delay: .1s; }
+
+body #panel .floater > span:nth-child(3) { bottom: 0; }
+
+body #panel .floater > span:nth-child(3), body #panel .floater > span:nth-child(3) span { transition-delay: .2s; }
+
+body #panel .floater > span span { height: 100%; border-radius: 1em; background: currentcolor; }
+
+body #panel input.left:checked ~ .floater > span { left: 0em; }
+
+body #panel input.left:checked ~ .floater > span:nth-child(2) span { margin-right: 0.2em; }
+
+body #panel input.center:checked ~ .floater > span { left: 1.5em; }
+
+body #panel input.center:checked ~ .floater > span:nth-child(2) span { margin-left: 0.1em; margin-right: 0.1em; }
+
+body #panel input.right:checked ~ .floater > span { left: 3em; }
+
+body #panel input.right:checked ~ .floater > span:nth-child(2) span { margin-left: 0.2em; }
+
+body #panel input.justify:checked ~ .floater > span { left: 4.5em; }
+/*# sourceMappingURL=index.css.map */

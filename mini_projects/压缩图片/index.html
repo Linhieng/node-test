@@ -1,0 +1,70 @@
+<input type="file" id="upload" onchange="compressPic(this.files[0])" >
+<p>图片源大小：<span id="source"></span></p>
+<p>压缩图片大小：<span id="dest"></span></p>
+<img id="pic" />
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.min.js"></script>
+<script>
+  const ori = document.getElementById('source')
+  const compress = document.getElementById('dest')
+  
+  function compressPic(file) {
+    const reader = new FileReader()
+    reader.onload = function (e) {
+      const canvas = document.createElement('canvas') 
+      const ctx = canvas.getContext("2d") 
+      const image = new Image() 
+      image.src = e.target.result 
+      setTimeout(() => { // image.src 赋值过程是异步的（猜测）
+        canvas.width = image.width
+        canvas.height = image.height
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+        const data = canvas.toDataURL('image/jpeg', 0.5) // 第二个参数为 1 代表不压缩
+        uploadPic('compress-pic', data)
+        
+        // 显示图片和始末文件大小便于观察
+        document.getElementById('pic').src = data
+        ori.innerText = returnFileSize(baseToFile('ori',image.src).size)
+        compress.innerText = returnFileSize(baseToFile('com', data).size)
+        
+      }, 0)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  // 上传
+  function uploadPic (fileName, data) {
+    const file = baseToFile(fileName, data)
+    const formData = new FormData()
+    fileName = 'singleImage' // 要与后台规定的名称一致
+    formData.append(fileName, file)
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:3030/upload',
+      headers: {'Content-Type': 'multipart/form-data'},
+      data: formData
+    })
+  }
+
+  //将 base64 转换为 file
+  function baseToFile (fileName, data) {
+    const arr = data.split(',') // 分开类型和代码
+    const type = arr[0].match(/:(.*?);/)[1] // 取出类型
+    const b = [...window.atob(arr[1])] // 解码 base 64
+    const u8a = new Uint8Array(b.length) 
+    b.forEach((v,i) => { u8a[i] = v.charCodeAt(0) }) // 解码内容变成 unit8 内容
+    fileName = 'demo.jpg' // 在前端声明是什么文件, 方便后端识别
+    return new File([u8a], fileName, { type })
+  }
+
+  // 计算单位
+  function returnFileSize(number) {
+    if(number < 1024) {
+      return number + 'bytes';
+    } else if(number >= 1024 && number < 1048576) {
+      return (number/1024).toFixed(1) + 'KB';
+    } else if(number >= 1048576) {
+      return (number/1048576).toFixed(1) + 'MB';
+    }
+  }
+</script>

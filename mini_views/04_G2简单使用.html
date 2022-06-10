@@ -1,0 +1,50 @@
+<script src="https://gw.alipayobjects.com/os/lib/antv/g2/4.1.49/dist/g2.min.js"></script>
+
+<div id="container"></div>
+
+<script>
+  const data = [
+    { year: '1951 年', sales: 38 },
+    { year: '1952 年', sales: 52 },
+    { year: '1956 年', sales: 61 },
+    { year: '1957 年', sales: 145 },
+    { year: '1958 年', sales: 48 },
+    { year: '1959 年', sales: 38 },
+    { year: '1960 年', sales: 38 },
+    { year: '1962 年', sales: 38 },
+  ];
+  const chart = new G2.Chart({
+    container: 'container',
+    autoFit: true,
+    height: 500,
+  });
+
+  chart.data(data);
+  chart.scale('sales', {
+    nice: true,
+  });
+
+  chart.tooltip({
+    showMarkers: false
+  });
+  chart.interaction('active-region');
+
+  chart.interval().position('year*sales');
+
+  chart.render();
+  console.dir(chart)
+  setTimeout(() => {
+    const data = [
+      { year: '1951 年', sales: 150 },
+      { year: '1952 年', sales: 52 },
+      { year: '1956 年', sales: 61 },
+      { year: '1957 年', sales: 145 },
+      { year: '1958 年', sales: 48 },
+      { year: '1959 年', sales: 38 },
+      { year: '1960 年', sales: 38 },
+      { year: '1962 年', sales: 38 },
+    ];
+    chart.changeData(data)
+  }, 1000)
+
+</script>

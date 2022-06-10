@@ -1,0 +1,42 @@
+<div id="container" ></div>
+<style>
+  #container {
+    width: 1000px;
+    height: 500px;
+  }
+</style>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=54e3d866f0e45ed1592e8d0f932395cc"></script> 
+
+<!--四、异步初始化高德地图插件-->
+<script type="text/javascript"> window._AMapSecurityConfig = { serviceHost:'http://itaem.cn:39100/_AMapService', } </script>
+
+<script>
+  //初始化地图插件
+  window.onload = function () {
+    const map = new AMap.Map("container", {
+      zoom: 14, 
+      center: [110.303511,21.153466]
+    })
+    const lineArr = [
+      [110.302074,21.147042],
+      [110.302503,21.145601],
+      [110.302503,21.145601],
+      [110.302739,21.144701],
+      [110.306601,21.144481],
+      [110.309391,21.145621],
+      [110.307245,21.151585],
+      [110.304971,21.155127],
+      [110.302889,21.156468],
+      [110.296774,21.158469],
+    ]
+    // 创建一个 Marker 实例：（标记点）
+    const polyline = new AMap.Polyline({
+        path: lineArr,          //设置线覆盖物路径
+        strokeColor: "#3366FF", //线颜色
+        strokeWeight: 5,        //线宽
+        strokeStyle: "solid",   //线样式
+    })
+    map.add(polyline)
+  }
+</script>
