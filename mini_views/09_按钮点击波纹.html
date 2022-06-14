@@ -1,0 +1,128 @@
+<button class="material-btn">
+  <div class="wave"></div>
+  WAVE
+</button>
+
+<button class="slide-btn">
+  <div class="text">SLIDE</div>
+</button>
+
+<style>
+
+html{
+  box-sizing: border-box;
+  font-family: Roboto, Sans-Serif;
+/*   background: #4DD0E1; */
+}
+
+*, *:before, *:after{
+  box-sizing: inherit;
+}
+
+*:active, *:focus{
+  outline: none;
+}
+
+button{
+  margin: 10px;
+}
+
+.material-btn{
+  position: relative;
+  overflow: hidden;
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: none;
+  background: #6A1B9A;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.wave{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  
+  width: 5px;
+  height: 5px;
+  
+  border-radius: 100%;
+  transform: scale(0);
+  background: rgba(255,255,255,.4);
+}
+
+.material-btn--active .wave{
+  animation: wave-animation 1.9s;
+}
+
+.slide-btn{
+  overflow:hidden;
+  padding: 10px 25px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  color: #fff;
+  background: #1565C0;
+  cursor: pointer;
+}
+
+.slide-btn--active .text{
+  animation: slide-animation 0.8s;
+}
+
+@keyframes wave-animation{
+  from{
+    opacity: 1;
+    transform: scale(0);
+  }to{
+    transform:scale(70);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-animation{
+  0%{
+    opacity: 1;
+    transform: translateX(0%);
+  }50%{
+    transform: translateX(150%);
+    opacity: 0;
+  }51%{
+    transform: translate(-100%);
+  }100%{
+    transform: translate(0%);
+    opacity: 1;
+  }
+}
+</style>
+
+<script>
+var btn1 = document.querySelector('.material-btn');
+btn1.onmousedown = function (event) {
+  var wave = btn1.querySelector('.wave');
+  var className = 'material-btn--active';
+  if (btn1.classList.contains(className)) {
+    btn1.classList.remove(className);
+  }
+  wave.style.left = event.clientX - btn1.offsetLeft + 'px';
+  wave.style.top = event.clientY - btn1.offsetTop + 'px';
+
+  void btn1.offsetWidth;
+  btn1.classList.add(className);
+}
+
+var btn2 = document.querySelector('.slide-btn');
+btn2.onmousedown = function (event) {
+  var wave = btn2.querySelector('.wave');
+  var className = 'slide-btn--active';
+  if (btn2.classList.contains(className)) {
+    btn2.classList.remove(className);
+  }
+
+  void btn2.offsetWidth;
+  btn2.classList.add(className);
+}
+
+</script>
