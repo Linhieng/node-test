@@ -1,0 +1,38 @@
+<tag>角标上的文字</tag>
+
+<style>
+tag{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --h: 50px;
+  width: 140px;
+  height: var(--h);
+  position: relative;
+  border-radius: 4px 4px 4px 0px;
+
+
+  /* 加高光 */background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.4), transparent) rgba(20, 30, 41, 0.76);
+  /* 处理高光泛白 */background-blend-mode: soft-light;
+  background-color: #ea9234;
+}
+tag::before{
+    content: '';
+    position: absolute;
+    --a: calc(var(--h) / 5);
+    width: var(--a);
+    height: var(--a);
+    left: 0;
+    bottom: calc(var(--a) * -1);
+    clip-path: polygon(0 0, 100% 0, 100% 100%); /*三角*/
+
+    background-color: inherit;
+    /* 实现颜色变深一点 */
+    /* background: #BB2A39; 方式一, 写死, 不推荐 */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)); 方式二: 加层半透明渐变 */
+    /* filter: brightness(.7); 方式三: 滤镜实现 */
+    /* background-color: color-mix(in srgb, #34c9eb 10%, white); 方式四: 草案 浏览器未实现 */
+    filter: brightness(.7);
+}
+</style>
