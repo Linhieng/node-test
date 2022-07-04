@@ -1,6 +1,6 @@
 const fs = require('fs')
 const files = fs.readdirSync('.')
-const { map_1204 } = require('./1204.private')
+const map_1204 = require('F:\\Desktop\\temp\\map_1204')
 
 function 批量重命名() {
   files.forEach((file_name) => {
