@@ -1,0 +1,60 @@
+<!-- https://codepen.io/tomhermans/pen/ZExzrry -->
+
+<h2>faded image blend</h2>
+<div class="s">
+  <div class="p1"></div>
+  <div class="p2"></div>
+</div>
+
+<link rel="stylesheet" href="./tmp.css">
+
+<script src="https://cdn.jsdelivr.net/npm/tweakpane@3.1.0/dist/tweakpane.min.js"></script>
+
+<script>
+  console.clear();
+
+  // tweakpane parameters
+  const minmax = { min: 0, max: 100, step: 1 };
+  const minmax360 = { min: 0, max: 360, step: 1 };
+
+  const PARAMS = {
+    pct1: 30,
+    pct2: 66,
+    angle: 90,
+    // msg: "Tweakpane ready",
+    // svgfilter: "",
+    // blendmode: "",
+    diffscale: ["angle"] // add properties that require a different scale
+  };
+  const wrap = document.getElementById("wrap");
+  const rootstyle = document.documentElement.style;
+
+  const pane = new Tweakpane.Pane();
+  // loop through all PARAMS and add onChange handler
+  for (const [property, value] of Object.entries(PARAMS)) {
+    console.log("xxx", `${property}::: ${PARAMS[property]}`);
+    if (isInArray(property, PARAMS.diffscale)) {
+      console.log("diffscale");
+      pane.addInput(PARAMS, `${property}`, minmax360).on("change", (val) => {
+        setCustomProp(`${property}`, val.value);
+      });
+    } else {
+      // run the property through the onChange and hook up with custom function
+      pane.addInput(PARAMS, `${property}`, minmax).on("change", (val) => {
+        setCustomProp(`${property}`, val.value);
+      });
+    }
+  }
+
+  function setCustomProp(prop, val, unit = "") {
+    // on root elem
+    console.log(prop + " - " + val + " : " + unit);
+    rootstyle.setProperty("--" + prop, val + unit);
+  }
+
+  //FUNCTIONS
+  function isInArray(value, array) {
+    return array.indexOf(value) > -1;
+  }
+
+</script>
