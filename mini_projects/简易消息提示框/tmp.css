@@ -6,6 +6,7 @@
   position: fixed;
   z-index: 99999;
   left: 50%;
+  top: 10px;
   transform: translateX(-50%);
   /* 消息提示框容器样式 */
 }
