@@ -1,0 +1,66 @@
+#my-msg {
+  margin    : 0;
+  padding   : 0;
+  box-sizing: border-box;
+
+  position : fixed;
+  z-index  : 99999;
+  left     : 50%;
+  transform: translateX(-50%);
+
+  /* 消息提示框容器样式 */
+  .message {
+    display         : flex;
+    align-items     : center;
+    min-width       : 300px;
+    padding         : 8px 16px;
+    overflow        : hidden;
+    margin-top      : 20px;
+    border-radius   : 6px;
+    background-color: #edf2fc;
+    border          : 1px solid #edf2fc;
+    font-size       : 16px;
+
+    p {
+      line-height: 1;
+      font-size  : 14px;
+      color      : #909399;
+    }
+
+    /* 内容居中 */
+    &.center {
+      justify-content: center;
+    }
+
+    /* 成功提示框样式 */
+    &.success {
+      background-color: #e1f3d8;
+      border-color    : #e1f3d8;
+
+      p {
+        color: #67c23a;
+      }
+    }
+
+    /* 错误提示框样式 */
+    &.error {
+      background-color: #fef0f0;
+      border-color    : #fef0f0;
+
+      p {
+        color: #f56c6c;
+      }
+    }
+
+    /* 警告提示框样式 */
+    &.warning {
+      background-color: #fdfce6;
+      border-color    : #fdfce6;
+
+      p {
+        color: #e6a23c;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,43 @@
+<!-- <div id="my-msg">
+  <div class="message"> <p>这是一个提示框</p> </div>
+  <div class="message center"> <p>这是一个提示框</p> </div>
+  <div class="message success"> <p>这是一个成功提示框</p> </div>
+  <div class="message warning"> <p>这是一个警告提示框</p> </div>
+  <div class="message error"> <p>这是一个错误提示框</p> </div>
+</div> -->
+<link rel="stylesheet" href="./tmp.css">
+<body>
+<script>
+  function initMsg() {
+    const id = 'my-msg'
+    const msgDiv = document.createElement('div')
+    msgDiv.id = id
+    let time
+    time = setInterval(() => {
+      document.body && document.body.appendChild(msgDiv) && clearInterval(time)
+    })
+
+    window.$msg = function (message, type) {
+      if (message === undefined) return
+      const msg = document.createElement('div')
+      const parent = document.getElementById(id)
+      msg.innerHTML = `<p>${message}</p>`
+      msg.classList.add('message')
+      type && msg.classList.add(type)
+      parent.appendChild(msg)
+      setTimeout(() => {
+        parent.removeChild(msg)
+      }, 3000)
+    }
+  }
+
+    initMsg()
+    setTimeout(() => { /* 不支持立即显示 */
+      $msg('提示')
+      $msg('居中', 'center')
+      $msg('成功提示', 'success')
+      $msg('错误提示', 'error')
+      $msg('警告提示', 'warning')
+    }, 1000);
+</script>
+</body>
