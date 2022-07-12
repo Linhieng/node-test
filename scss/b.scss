@@ -1,0 +1,7 @@
+
+@for $i from 0 to 5 {
+  #Polygon-#{$i + 1} {
+    $x: 0.2 * $i + 's';
+    animation-delay: #{$x};
+  }
+}
