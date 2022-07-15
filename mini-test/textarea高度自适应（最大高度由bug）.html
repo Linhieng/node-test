@@ -10,38 +10,44 @@
 * @param                {Number}                设置最大高度(可选)
 */
   var autoTextarea = function (elem, extra, maxHeight) {
-    extra = extra || 0;
-    var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
-      isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
-      addEvent = function (type, callback) {
-        elem.addEventListener ?
-          elem.addEventListener(type, callback, false) :
-          elem.attachEvent('on' + type, callback);
-      },
-      getStyle = elem.currentStyle ? function (name) {
-        var val = elem.currentStyle[name];
 
+    extra = extra || 0;
+
+    var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window
+    var isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera')
+
+    var addEvent = function (type, callback) {
+      elem.addEventListener ?
+        elem.addEventListener(type, callback, false) :
+        elem.attachEvent('on' + type, callback);
+    }
+
+    var getStyle = elem.currentStyle ?
+      function (name) {
+        var val = elem.currentStyle[name];
         if (name === 'height' && val.search(/px/i) !== 1) {
           var rect = elem.getBoundingClientRect();
           return rect.bottom - rect.top -
             parseFloat(getStyle('paddingTop')) -
             parseFloat(getStyle('paddingBottom')) + 'px';
         };
-
         return val;
-      } : function (name) {
-        return getComputedStyle(elem, null)[name];
-      },
-      minHeight = parseFloat(getStyle('height'));
+      }
+    : function (name) {
+      return getComputedStyle(elem, null)[name];
+    }
+
+    var minHeight = parseFloat(getStyle('height'));
 
     elem.style.resize = 'none';
 
     var change = function () {
       var scrollTop, height,
         padding = 0,
-        style = elem.style;
+        style = elem.style;1234123412341234
 
       if (elem._length === elem.value.length) return;
+
       elem._length = elem.value.length;
 
       if (!isFirefox && !isOpera) {
