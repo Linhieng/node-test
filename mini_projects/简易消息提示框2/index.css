@@ -1,0 +1,150 @@
+@charset "UTF-8";
+#my-msg {
+  position: fixed;
+  z-index: 99999;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#my-msg .message {
+  width: 300px;
+  height: 0px;
+  border-bottom: 50px solid #edf2fc;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: #edf2fc;
+  animation-name: fadeIn;
+  animation-duration: .3s;
+  animation-timing-function: ease-in-out;
+}
+
+#my-msg .message p {
+  position: absolute;
+  top: 0px;
+  line-height: 1;
+  font-size: 14px;
+  color: #909399;
+  opacity: 1;
+}
+
+#my-msg .message.success {
+  background-color: #e1f3d8;
+  border-color: #e1f3d8;
+}
+
+#my-msg .message.success p {
+  color: #67c23a;
+}
+
+#my-msg .message.error {
+  background-color: #fef0f0;
+  border-color: #fef0f0;
+}
+
+#my-msg .message.error p {
+  color: #f56c6c;
+}
+
+#my-msg .message.warning {
+  background-color: #fdfce6;
+  border-color: #fdfce6;
+}
+
+#my-msg .message.warning p {
+  color: #e6a23c;
+}
+
+#my-msg .fadeOut {
+  animation-name: fadeOut;
+  animation-timing-function: linear;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+#my-msg .fadeOut p {
+  animation-name: pFadeOut;
+  animation-timing-function: linear;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pFadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    height: 0px;
+    border-bottom-width: 50px;
+    margin-bottom: 10px;
+  }
+  70% {
+    opacity: .5;
+  }
+  98% {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    border-bottom-width: 0px;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    border-bottom-width: 0px;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 其他无关样式 */
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+  background: #19c853;
+  border: none;
+}
+
+.custom-btn:hover {
+  background: #0003ff;
+}

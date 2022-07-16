@@ -1,0 +1,14 @@
+<button class="custom-btn btn-1">弹出消息</button>
+
+<!-- 引入自己创建的 myMsg  -->
+<script src="./myMsg.js"></script>
+<link rel="stylesheet" href="./index.css">
+
+<script>
+  let i = 0
+  const types = ['success', 'error', 'warning']
+  document.querySelector('button').onclick = () => {
+    $msg('我是弹出的消息', types[i])
+    i = (i+1) % 3
+  }
+</script>
