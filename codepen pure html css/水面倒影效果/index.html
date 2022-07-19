@@ -1,0 +1,21 @@
+<!-- https://codepen.io/joshonweb/pen/abYmPXy -->
+<body>
+  <div class="app">
+    <svg>
+      <filter id="wavy">
+        <feTurbulence id="turbulence" type="turbulence" numOctaves="1" result="NOISE"></feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="NOISE" scale="50"></feDisplacementMap>
+        <animate xlink:href="#turbulence" attributeName="baseFrequency" dur="20s" keyTimes="0;0.5;1" values="0.01 0.02;0.02 0.04;0.01 0.02" repeatCount="indefinite"></animate>
+      </filter>
+
+    </svg>
+      <div class="reflection">
+      <h1>Josh🚀</h1>
+      <h1 class="clone">Josh🚀</h1>
+    </div>
+    <div class="reflection">
+      <img src="https://images-na.ssl-images-amazon.com/images/I/71TZN+HrtzL.jpg" />
+      <div class="clone"><img src="https://images-na.ssl-images-amazon.com/images/I/71TZN+HrtzL.jpg" /></div>
+    </div>
+    <link rel="stylesheet" href="./index.css">
+</body>
