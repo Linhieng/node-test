@@ -1,0 +1,120 @@
+.page-endpic {
+  position: relative;
+  width: 106px;
+  height: 128px;
+  margin: 0 auto;
+}
+
+.page-endpic .page-endpic-paper {
+  position: relative;
+  width: 106px;
+  height: 128px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #ebebeb 0%, #d9d9d9 100%);
+}
+
+.page-endpic .page-endpic-paper::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 14px solid #f1f1f1;
+  border-bottom: 14px solid #f7f7f7;
+  border-left: 14px solid #f7f7f7;
+  border-right: 14px solid #f1f1f1;
+  border-bottom-left-radius: 3px;
+  border-top-color: #fff;
+  border-right-color: #fff;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-paper-line {
+  position: absolute;
+  left: 28px;
+  top: 36px;
+  width: 50px;
+  height: 6px;
+  background: #fff;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-paper-line.l2 {
+  top: 48px;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-paper-line.l3 {
+  top: 60px;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-paper-line.l4 {
+  top: 72px;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-paper-line.l5 {
+  top: 84px;
+  width: 34px;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-angle-shadow {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 12.5px solid #d8d8d8;
+  border-bottom: 12.5px solid transparent;
+  border-left: 12.5px solid transparent;
+  border-right: 12.5px solid #d8d8d8;
+}
+
+.page-endpic .page-endpic-paper .page-endpic-icon-shadow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 39px;
+  height: 36px;
+  background-size: 100% 100%;
+}
+
+.page-endpic .page-endpic-icon {
+  position: absolute;
+  right: -28px;
+  bottom: -25px;
+  width: 56px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 2;
+  animation: a-e-icon-finish 0.3s 0.7s linear both;
+}
+
+@keyframes a-e-icon-finish {
+  0% {
+    opacity: 0;
+    transform: scale(0.3, 0.5) translate(-3px, 23px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.15, 1.13) translate(1px, 0px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.96, 0.98) translate(0px, 0px);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.12, 1.11) translate(0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1, 1) translate(0px, 0px);
+  }
+}
+
+.page-endpic .page-endpic-icon .page-endpic-icon-circle {
+  fill: #2378ff;
+}
+
+.page-endpic .page-endpic-icon .page-endpic-icon-check {
+  fill: white;
+}
