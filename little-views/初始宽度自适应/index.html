@@ -1,0 +1,120 @@
+<!-- https://codepen.io/YusukeNakaya/pen/XyOaBj -->
+<div class="wrap">
+  <ul class="matrix__options">
+    <li class="matrix__options__li"> <p>非常非常非常喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常非常喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常喜欢</p> </li>
+    <li class="matrix__options__li"> <p>喜欢</p> </li>
+    <li class="matrix__options__li"> <p>不喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常不喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常非常不喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常非常非常不喜欢</p> </li>
+  </ul>
+  <ul class="matrix__options">
+    <li class="matrix__options__li"> <p>非常喜欢</p> </li>
+    <li class="matrix__options__li"> <p>喜欢</p> </li>
+    <li class="matrix__options__li"> <p>不喜欢</p> </li>
+  </ul>
+  <ul class="matrix__options">
+    <li class="matrix__options__li"> <p>非常喜欢</p> </li>
+    <li class="matrix__options__li"> <p>喜欢</p> </li>
+    <li class="matrix__options__li"> <p>不喜欢</p> </li>
+    <li class="matrix__options__li"> <p>非常不喜欢</p> </li>
+  </ul>
+</div>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .wrap {
+    margin: 20px auto;
+    width: 600px;
+  }
+
+  .matrix__options {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    box-shadow: 0 0 10px 1px #00000033;
+  }
+
+  .matrix__options__li {
+    flex: 0 0 auto;
+    padding: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    list-style: none;
+  }
+
+  p {
+    width: 100%;
+    height: 100%;
+    padding: 10PX;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+  }
+</style>
+
+<script>
+  /*
+  目的: 动态设置 .matrix__options__li 的 width
+  基本思路: 获取 matrix__options 的宽度(称为总宽度), 获取 matrix__options__li 中数量和最大宽度, 根据数量和最大宽度设置 width 的百分比
+  过程描述:
+    if 数量等于 1, 则 width 设置为 100%
+    elif 最大宽度占总宽度一半以上, 则 width 设置为 100%
+    elif 数量等于 2, 则 width 设置为 50%
+    elif 最大宽度占总宽度 25% 到 50% 之间, 则 width 设置为 50%
+    elif 数量等于 3, 则 width 设置为 50%
+    elif 数量等于 4, 则 width 设置为 25%
+    elif 最大宽度占总宽度 20% 到 25% 之间, 则 width 设置为 25%
+    else 最大宽度占总宽度不到 20%, 则 width 设置为 20%
+  */
+  function autoWidth() {
+
+    const wrap = document.getElementsByClassName('matrix__options')
+    for (const w of wrap) {
+      const wrapWidth = Number.parseInt(window.getComputedStyle(w).width)
+
+      let maxWidth = 0
+      const li = w.getElementsByClassName('matrix__options__li')
+      const liNum = li.length
+      for (const l of li) {
+        l.style.width = 'auto'
+        const width = Number.parseInt(window.getComputedStyle(l).width)
+        console.log('debugger: ', width)
+        if (width > maxWidth) maxWidth = width
+      }
+
+      let width
+      const ratio = maxWidth / wrapWidth
+      console.log('debugger: ', maxWidth, ratio)
+      if (liNum === 1) {
+        width = 100
+      } else if (ratio > 0.5) {
+        width = 100
+      } else if (liNum === 2) {
+        width = 50
+      } else if (ratio > 0.25) {
+        width = 50
+      } else if (liNum === 3) {
+        width = 50
+      } else if (liNum === 4) {
+        width = 25
+      } else if (ratio > 0.2) {
+        width = 25
+      } else {
+        width = 20
+      }
+
+      for (const l of li) {
+        l.style.width = width + '%'
+      }
+    }
+  }
+
+  window.onload = autoWidth
+</script>
